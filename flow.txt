@@ -1,0 +1,13 @@
+This is how the project is configured:
+
+    -- Client will hit our domain
+    -- Route 53 will resolve the domain with ALB IP
+    -- Sender will be redirected to this IP
+    -- They will flow through VPC, IGW, and reach the public subnet
+    -- Public subnet will have ELB
+    -- ELB is attached with HTTPS 443 listener and ACM
+    -- TSL Handshake is done and encrypted connection is set up
+    -- ALB is also configured with empty Target Groups
+    -- Auto Scaler will register Launch template's EC2 instances with target group
+    -- Health checks will be triggered at Target Group level
+    -- ALB will distribute the traffic to instances which are healthy
